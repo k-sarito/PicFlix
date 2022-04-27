@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { MovieCard } from "./MovieCard";
-import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB } from "../modules/external/TMDBManager";
+import { saveFlic, saveTV } from "../modules/local/SavedFlixManager";
+import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById } from "../modules/external/TMDBManager";
 
-export const MovieList = () => {
+export const MovieList = ({getLoggedInUser}) => {
     // const [movie, setMovie] = useState({})
     const [movie, setMovie] = useState([])
     const [keyword, setKeyword] = useState({
         search_field : ""
+    })
+    const [savedFlic, setSavedFlic] = useState({
+        // movieId : "",
+        // userId: "",
+        // name: "",
+        // img: "",
+        // overview: "",
+        // release: "",
+        // runtime: "",
+        // rating: ""
+
     })
 
 
@@ -23,12 +35,61 @@ export const MovieList = () => {
         })
     }
 
-    const handleSearch = () => {
+    const HandleSaveTV = (event) => {
+        return getTvById(event.target.id)
+        .then(newTV => {
+            let addedTV = {
+                tvId : `${newTV.id}`,
+                userId : getLoggedInUser(),
+                name: `${newTV.name}`,
+                networks: `${newTV.networks.name}`,
+                seasons: `${newTV.number_of_seasons}`,
+                episodes: `${newTV.number_of_episodes}`,
+                img: `${newTV.poster_path}`,
+                rating:`${newTV.vote_average}`,
+                overview: `${newTV.overview}`
+            }
+            saveTV(addedTV)
+        })
+    }
+    
+    const HandleSaveFlic = (event) => {
+        console.log(event.target.id)
+        console.log('here')
+        return getMovieById(event.target.id)
+        .then(newMovie => {
+            let addedMovie = {
+                movieId : `${newMovie?.id}`,
+                userId: getLoggedInUser(),
+                name: `${newMovie?.title}`,
+                img: `${newMovie?.poster_path}`,
+                overview: `${newMovie?.overview}`,
+                release: `${newMovie?.release_date}`,
+                runtime:`${newMovie?.runtime}`,
+                rating: `${newMovie?.vote_average}`,
+                groupWatch: false
+            }
+            // console.log(addedMovie)
+            saveFlic(addedMovie)
+        })
         
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault()
         return searchTMDB(keyword.search_field)
         .then(movies => {
-            
-            return setMovie(movies)
+           
+            for ( let i = 0; i < movies.results.length; i++) {
+                if(movies.results[i].known_for){
+                    console.log(movies.results[i].known_for)
+                    setMovie(movies.results[i].known_for)
+                    break
+                } else {
+                    setMovie(movies.results)
+                    break
+                }
+            }
         })
     }
     
@@ -81,7 +142,7 @@ export const MovieList = () => {
             <option value="37">Western</option>
         </select>
         <div className="preview">
-            {movie.map((singleMovie) => (<MovieCard movieObj={singleMovie} key={singleMovie.id}/>))}
+            {movie.map((singleMovie) => (<MovieCard movieObj={singleMovie} key={singleMovie.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
             {/* <h4><span className="movie_name">{movie.title}</span></h4>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
                 <p>{movie.overview}</p> */}

@@ -16,11 +16,7 @@ export const getMoviesByGenre = (genre) => {
 export const searchTMDB = (keyword) => {
     return fetch (`${mdbURL}/search/multi?api_key=${APIKey}&language=en-US&query=${keyword}&page=1&include_adult=false&sort_by=popularity.desc`)
     .then(response => response.json())
-    .then(response => {
-        if(response.results.known_for){
-            return response.results.known_for
-        } else {return response.results}
-    })
+    
 }
 
 export const getMovieById = (movieId) => {
@@ -28,6 +24,13 @@ export const getMovieById = (movieId) => {
     .then(response => response.json())
 }
 
+export const getTvById = (tvId) => {
+    return fetch (`${mdbURL}/tv/${tvId}?api_key=${APIKey}&language=en-US`)
+    .then(response => response.json())
+}
+
+//*TV
+// https://api.themoviedb.org/3/tv/115036?api_key=161a8b9dee252788644b3b74293c551a&language=en-US
 
 // https://api.themoviedb.org/3/movie/414906?api_key=161a8b9dee252788644b3b74293c551a&language=en-US
 //https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
