@@ -20,3 +20,13 @@ export const saveTV = (tv) => {
         body: JSON.stringify(tv),
     }).then(response => response.json())
 }
+
+export const getSavedFlixByUser = (userId) => {
+    return fetch (`${localURL}/savedFlix?_userId=${userId}`)
+    .then(result => result.json())
+}
+
+export const getSavedTVByUser = (userId) => {
+    return fetch (`${localURL}/savedTV?_userId=${userId}`)
+    .then(result => result.json())
+}

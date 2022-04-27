@@ -1,0 +1,12 @@
+.myMovies_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.myTV_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.movie_card_details {
+    width: 15%;
+    word-wrap: break-word;
+}

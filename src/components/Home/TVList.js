@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect}from "react";
+import { TVCard } from "./TVCard";
 import { useNavigate } from "react-router-dom";
-import { MovieCard } from "./MovieCard";
 import { saveFlic, saveTV } from "../modules/local/SavedFlixManager";
-import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById } from "../modules/external/TMDBManager";
+import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById, getPopularTV, getTVByGenre } from "../modules/external/TMDBManager";
 
-export const MovieList = ({getLoggedInUser}) => {
-    // const [movie, setMovie] = useState({})
+
+export const TVList = ({getLoggedInUser}) => {
     const navigate = useNavigate()
-    const [movie, setMovie] = useState([])
+    const [TV, setTV] = useState([])
     const [keyword, setKeyword] = useState({
         search_field : ""
     })
-   
 
-
-    const getMovie = () => {
-        return getPopularMovies()
+    const getTV = () => {
+        return getPopularTV()
     }
 
     const genreInputChange = (event) => {
         let genre = event.target.value
-        return getMoviesByGenre(genre)
-        .then(movies => {
-            
-           return setMovie(movies.results)
+        return getTVByGenre(genre)
+        .then(tvshows => {
+            return setTV(tvshows.results)
         })
     }
 
@@ -76,16 +73,16 @@ export const MovieList = ({getLoggedInUser}) => {
             for ( let i = 0; i < movies.results.length; i++) {
                 if(movies.results[i].known_for){
                     console.log(movies.results[i].known_for)
-                    setMovie(movies.results[i].known_for)
+                    setTV(movies.results[i].known_for)
                     break
                 } else {
-                    setMovie(movies.results)
+                    setTV(movies.results)
                     break
                 }
             }
         })
     }
-    
+
     const handleInput = (event) => {
         const currentInput = {...keyword}
 
@@ -95,15 +92,10 @@ export const MovieList = ({getLoggedInUser}) => {
     }
 
     useEffect(() => {
-        getMovie().then(APImovie => {
-                return setMovie(APImovie.results)
-            })
-            console.log(movie)
+        getTV().then(APItv => {
+            return setTV(APItv.results)
+        })
     }, [])
-
-       
-
-    
 
     return (
         <>
@@ -113,30 +105,27 @@ export const MovieList = ({getLoggedInUser}) => {
             <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
         </div>
         <h4>Browse</h4>
-        <button type="button" onClick={() => navigate("/home/tv")}>TV</button>
+        <button type="button" onClick={() => navigate("/")}>Movies</button>
         <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
             <option value="---">Choose a Genre</option>
-            <option value="28">Action</option>
-            <option value="12">Adventure</option>
+            <option value="10759">Action/Adventure</option>
             <option value="16">Animation</option>
             <option value="35">Comedy</option>
             <option value="80">Crime</option>
             <option value="99">Documentary</option>
             <option value="18">Drama</option>
             <option value="10751">Family</option>
-            <option value="14">Fantasy</option>
-            <option value="36">History</option>
-            <option value="27">Horror</option>
-            <option value="10402">Music</option>
+            <option value="10762">Kids</option>
             <option value="9648">Mystery</option>
-            <option value="10749">Romance</option>
-            <option value="878">Sci-Fi</option>
-            <option value="53">Thriller</option>
-            <option value="10752">War</option>
+            <option value="10763">News</option>
+            <option value="10764">Reality</option>
+            <option value="10765">Sci-Fi/Fantasy</option>
+            <option value="10767">Talk</option>
+            <option value="10767">War/Politics</option>
             <option value="37">Western</option>
         </select>
         <div className="preview">
-            {movie.map((singleMovie) => (<MovieCard movieObj={singleMovie} key={singleMovie.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
+            {TV.map((singleShow) => (<TVCard TVObj={singleShow} key={singleShow.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
             {/* <h4><span className="movie_name">{movie.title}</span></h4>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
                 <p>{movie.overview}</p> */}
@@ -145,4 +134,5 @@ export const MovieList = ({getLoggedInUser}) => {
         </>
         
     )
+
 }
