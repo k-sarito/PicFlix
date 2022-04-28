@@ -20,6 +20,9 @@ export const NavBar = ({clearUser}) => {
                 <li>
                     <Link to="/NowPlaying">Now Playing</Link>
                 </li>
+                <li>
+                    <button type="button" onClick={clearUser}>Logout</button>
+                </li>
             </ul>
         </nav>
     )
