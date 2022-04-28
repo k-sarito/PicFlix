@@ -6,6 +6,7 @@ export const Group = ({getLoggedInUser}) => {
     const [friends, setFriends] = useState([])
     const [friendsSavedMovies, setFriendsSavedMovies] = useState([])
     const currentUser = getLoggedInUser()
+    
 
     //*here we're getting every user, now to the useEffect
     const getAllButMe = () => {
@@ -30,13 +31,16 @@ export const Group = ({getLoggedInUser}) => {
         // console.log(movieArr)
         //*we're now taking movieArr and moving it into friendsSavedMovies
         setFriendsSavedMovies(movieArr)
+        
         // console.log(friendsSavedMovies)
         
     }
 
     const displayFriendsMovies = () => {
         for (let i=0; i<friendsSavedMovies.length; i++){
-            friendsSavedMovies[i].map((singleMovie) => (console.log(singleMovie.name)) )
+            return friendsSavedMovies[i].map((singleMovie) => {return (
+                <p>{singleMovie.name}</p>
+            )} )
         }
     }
 
@@ -57,7 +61,15 @@ export const Group = ({getLoggedInUser}) => {
         getAllFriendsMovies()
     }, [friends])
 
-    useEffect(()=> {
-        displayFriendsMovies()
-    }, [friendsSavedMovies])
+    // useEffect(()=> {
+    //     displayFriendsMovies()
+    //     // console.log(friendsSavedMovies[0])
+    // }, [friendsSavedMovies])
+    return (
+        <>
+            <div className="map">
+                {displayFriendsMovies()}
+            </div>
+        </>
+    )
 }
