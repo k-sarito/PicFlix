@@ -29,7 +29,7 @@ export const TVList = ({getLoggedInUser}) => {
         .then(newTV => {
             let addedTV = {
                 tvId : `${newTV.id}`,
-                userId : getLoggedInUser(),
+                usersId : getLoggedInUser(),
                 name: `${newTV.name}`,
                 networks: `${newTV.networks.name}`,
                 seasons: `${newTV.number_of_seasons}`,
@@ -50,7 +50,7 @@ export const TVList = ({getLoggedInUser}) => {
         .then(newMovie => {
             let addedMovie = {
                 movieId : `${newMovie?.id}`,
-                userId: getLoggedInUser(),
+                usersId: getLoggedInUser(),
                 name: `${newMovie?.title}`,
                 img: `${newMovie?.poster_path}`,
                 overview: `${newMovie?.overview}`,

@@ -8,26 +8,26 @@ export const SavedMovieCard = ({movieObj}) => {
     const [seeDetails, updateSeeDetails] = useState(false)
     const [streaming, setStreaming] = useState([])
 
-    const getStreaming = (movieId) => {
-        return getMovieStreaming(movieId)
-        .then(streamers => {
-            // streamers.map((singleService) => setStreaming(singleService.logo_path))
-            setStreaming(streamers)
-            // console.log(streamers)
-        })
-    }
+    // const getStreaming = (movieId) => {
+    //     return getMovieStreaming(movieId)
+    //     .then(streamers => {
+    //         // streamers.map((singleService) => setStreaming(singleService.logo_path))
+    //         setStreaming(streamers)
+    //         // console.log(streamers)
+    //     })
+    // }
 
-    const DisplayStreaming = ({arr}) => {
-        return (
-            <>
-                {arr.map((singleService) => (<img src={`https://image.tmdb.org/t/p/w200${singleService.logo_path}`}/>))}
-            </>
-        )
-    }
+    // const DisplayStreaming = ({arr}) => {
+    //     return (
+    //         <>
+    //             {arr.map((singleService) => (<img src={`https://image.tmdb.org/t/p/w200${singleService.logo_path}`}/>))}
+    //         </>
+    //     )
+    // }
 
-    useEffect(() => {
-        getStreaming(movieObj.movieId)
-    }, [])
+    // useEffect(() => {
+    //     getStreaming(movieObj.movieId)
+    // }, [])
 
     const MovieCardArr = [
         <div className="movie_card">
@@ -35,7 +35,7 @@ export const SavedMovieCard = ({movieObj}) => {
                 <h4><span className="movie_name">{movieObj?.name}</span></h4>
                 <img src={imgURL}/>
                 {/* <DisplayStreaming arr={streaming}/> */}
-                {console.log(streaming)}
+                {/* {console.log(streaming)} */}
                 <input
                     type='hidden'
                     value={movieObj?.movieId}

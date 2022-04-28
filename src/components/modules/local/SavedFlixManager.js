@@ -22,11 +22,11 @@ export const saveTV = (tv) => {
 }
 
 export const getSavedFlixByUser = (userId) => {
-    return fetch (`${localURL}/savedFlix?_userId=${userId}`)
+    return fetch (`${localURL}/savedFlix?&usersId=${userId}&_expand=users`)
     .then(result => result.json())
 }
 
 export const getSavedTVByUser = (userId) => {
-    return fetch (`${localURL}/savedTV?_userId=${userId}`)
+    return fetch (`${localURL}/savedTV?&usersId=${userId}&_expand=users`)
     .then(result => result.json())
 }
