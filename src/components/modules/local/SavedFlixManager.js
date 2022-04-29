@@ -30,3 +30,13 @@ export const getSavedTVByUser = (userId) => {
     return fetch (`${localURL}/savedTV?&usersId=${userId}&_expand=users`)
     .then(result => result.json())
 }
+
+export const getExclusiveFlix = (userId) => {
+    return fetch (`${localURL}/savedFlix?&usersId_ne=${userId}&_expand=users`)
+    .then(result => result.json())
+}
+
+export const getExclusiveTV = (userId) => {
+    return fetch (`${localURL}/savedTV?&usersId_ne=${userId}&_expand=users`)
+    .then(result => result.json())
+}

@@ -13,6 +13,8 @@ export const Group = ({getLoggedInUser}) => {
         return getAllUsers()
     }
 
+    
+
     const getAllFriendsMovies = () => {
         const movieArr = []
         const friendIdArr = []
@@ -37,11 +39,26 @@ export const Group = ({getLoggedInUser}) => {
     }
 
     const displayFriendsMovies = () => {
-        for (let i=0; i<friendsSavedMovies.length; i++){
-            return friendsSavedMovies[i].map((singleMovie) => {return (
-                <p>{singleMovie.name}</p>
-            )} )
-        }
+
+        
+        return (
+            <>
+                <div className="things">
+                    <p>you suck</p>
+                    {()=> {
+                         for (let i=0; i<friendsSavedMovies.length; i++){
+                            return friendsSavedMovies[i].map((singleMovie) => { (
+                                <>
+                                {console.log(singleMovie.name)}
+                                <p>{singleMovie.name}</p>
+                                </>
+                            )} )
+                        }
+
+                    }}
+                </div>
+            </>
+        )
     }
 
     useEffect(() => {
@@ -65,11 +82,7 @@ export const Group = ({getLoggedInUser}) => {
     //     displayFriendsMovies()
     //     // console.log(friendsSavedMovies[0])
     // }, [friendsSavedMovies])
-    return (
-        <>
-            <div className="map">
-                {displayFriendsMovies()}
-            </div>
-        </>
-    )
+
+    setTimeout(displayFriendsMovies, 3000)
+   
 }
