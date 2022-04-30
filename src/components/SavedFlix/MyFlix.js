@@ -36,12 +36,12 @@ export const MyFlix = ({getLoggedInUser}) => {
         <div className="myFlix">
                 <h2>My Movies</h2>
             <div className="myMovies_container">
-                {savedMovies.map((singleMovie) => (<SavedMovieCard movieObj={singleMovie} key={singleMovie.id}/>))}
+                {savedMovies.map((singleMovie) => (<SavedMovieCard movieObj={singleMovie} key={singleMovie.id} getLoggedInUser= {getLoggedInUser}/>))}
 
             </div>
             <h2>My Shows</h2>
             <div className="myTV_container">
-                {savedTV.map((singleShow) => (<SavedTVCard TVObj={singleShow} key={singleShow.id}/>))}
+                {savedTV.map((singleShow) => (<SavedTVCard TVObj={singleShow} key={singleShow.id} getLoggedInUser={getLoggedInUser}/>))}
             </div>
         </div>
     )

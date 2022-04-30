@@ -1,33 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { getMovieStreaming } from "../modules/external/TMDBManager";
+import { getCommentsByMovieId , postComment } from "../modules/local/CommentManager";
+import { CommentCard } from "../comments/CommentCard";
+import { Modal } from "../modal/Modal";
 import "./SavedCard.css"
 
 
-export const SavedMovieCard = ({movieObj}) => {
+export const SavedMovieCard = ({movieObj, getLoggedInUser}) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj?.img}`
     const [seeDetails, updateSeeDetails] = useState(false)
+    const [movieComments, setMovieComments] = useState([])
+    const [currentComment, setCurrentComment] = useState({
+        body: ""
+    })
+    const [show, setShow] = useState(false)
     const [streaming, setStreaming] = useState([])
+    const currentUser = getLoggedInUser()
 
-    // const getStreaming = (movieId) => {
-    //     return getMovieStreaming(movieId)
-    //     .then(streamers => {
-    //         // streamers.map((singleService) => setStreaming(singleService.logo_path))
-    //         setStreaming(streamers)
-    //         // console.log(streamers)
-    //     })
-    // }
+    const getComments = (movieId) => {
+        setShow(true)
+        return getCommentsByMovieId(movieId)
+        .then(comments => (setMovieComments(comments)))
+    }
+    const handleInput = (event) => {
+        const currentInput = {...currentComment}
 
-    // const DisplayStreaming = ({arr}) => {
-    //     return (
-    //         <>
-    //             {arr.map((singleService) => (<img src={`https://image.tmdb.org/t/p/w200${singleService.logo_path}`}/>))}
-    //         </>
-    //     )
-    // }
+        currentInput[event.target.id] = event.target.value
 
-    // useEffect(() => {
-    //     getStreaming(movieObj.movieId)
-    // }, [])
+        setCurrentComment(currentInput)
+        // console.log(currentComment.body)
+    }
+    
+    const handlePostComment = () => {
+        const selection = {...currentComment}
+        const today = new Date()
+        let newComment = {
+            usersId: currentUser,
+            savedFlixId: movieObj.id,
+            body: `${selection.body}`,
+            timestamp: today 
+        }
+
+        postComment(newComment).then(setShow(false))
+    }
+
+    
 
     const MovieCardArr = [
         <div className="movie_card">
@@ -43,6 +60,10 @@ export const SavedMovieCard = ({movieObj}) => {
             </div>
             <div className="saved_movie_btn_container">
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(true)} id={`details_btn_${movieObj.movieId}`}>Details</button>
+                <button onClick={() => getComments(movieObj.id)}>Comments</button>
+                <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
+                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id}/>))}
+                </Modal>
                 <button className="saved_movie_delete_btn">Delete</button>
             </div>
         </div>
@@ -65,14 +86,20 @@ export const SavedMovieCard = ({movieObj}) => {
                 <p>Rating: {movieObj.rating}</p>
             </div>
             <div className="saved_movie_btn_container">
-                <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
+                <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close Details</button>
+                <button onClick={() => getComments(movieObj.id)}>Comments</button>
+                <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
+                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id}/>))}
+                </Modal>
                 <button className="saved_movie_delete_btn">Delete</button>
             </div>
         </div>
     ]
 
     return (
-        seeDetails ? MovieCardArr[1] : MovieCardArr[0]
+        <>
+        {seeDetails ? MovieCardArr[1] : MovieCardArr[0]}
+        </>
     )
 
 }
