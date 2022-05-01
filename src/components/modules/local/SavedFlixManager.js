@@ -54,7 +54,7 @@ export const getExclusiveTV = (userId) => {
 }
 
 export const groupWatchTV = (showObj) => {
-    return fetch (`${localURL}/savedTV?&id=${showObj.id}`, {
+    return fetch (`${localURL}/savedTV/${showObj.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type" : "application/json"
