@@ -62,3 +62,18 @@ export const groupWatchTV = (showObj) => {
         body: JSON.stringify(showObj)
     }).then(response => response.json())
 }
+
+export const groupWatchMovie = (movieObj) => {
+    return fetch (`${localURL}/savedFlix/${movieObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(movieObj)
+    }).then(response => response.json())
+}
+
+export const getAllGroupWatch = () => {
+    return fetch (`${localURL}/savedFlix?&groupWatch=true&_expand=users`)
+    .then(result => result.json())
+}

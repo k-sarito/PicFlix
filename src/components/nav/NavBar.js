@@ -18,7 +18,7 @@ export const NavBar = ({clearUser}) => {
                     <Link to="/Group">Group</Link>
                 </li>
                 <li>
-                    <Link to="/NowPlaying">Now Playing</Link>
+                    <Link to="/GroupWatch">Group Watch</Link>
                 </li>
                 <li>
                     <button type="button" onClick={clearUser}>Logout</button>

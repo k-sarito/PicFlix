@@ -17,6 +17,9 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
     const [show, setShow] = useState(false)
     const currentUser = getLoggedInUser()
 
+
+    //*--------------------COMMENTS--------------------------------------------
+
     const getComments = (showId) => {
         setShow(true)
         return getCommentsByShowId(showId)
@@ -42,6 +45,8 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
         postTVComment(newComment).then(setShow(false))
     }
 
+    //*--------------------GROUP WATCH---------------------------
+
     const checkIfGroupWatch = (showObj) => {
         if(showObj.groupWatch === true){
             setGroupShow(true)
@@ -62,8 +67,14 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
         groupWatchTV(editedObj)
     }
 
-    const undoGroupWatch = () => {
+    const undoGroupWatch = (showObj) => {
         setGroupShow(false)
+        let showObjCopy = {...showObj}
+        let editedObj = {
+            id: showObjCopy.id,
+            groupWatch: false
+        }
+        groupWatchTV(editedObj)
     }
 
     const groupIconArr = [
@@ -72,7 +83,7 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
             <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         ,
-        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => undoGroupWatch()}>
+        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => undoGroupWatch(TVObj)}>
             <path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" strokeLinecap="round"/>
             <path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="currentColor" strokeLinecap="round"/>
             <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>

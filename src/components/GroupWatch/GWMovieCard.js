@@ -3,7 +3,7 @@ import { getCommentsByMovieId, postComment } from "../modules/local/CommentManag
 import { CommentCard } from "../comments/CommentCard";
 import { Modal } from "../modal/Modal";
 
-export const GroupSavedMovieCard = ({movieObj, currentUser}) => {
+export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj?.img}`
     const [seeDetails, updateSeeDetails] = useState(false)
     const [movieComments, setMovieComments] = useState([])
@@ -11,7 +11,8 @@ export const GroupSavedMovieCard = ({movieObj, currentUser}) => {
         body: ""
     })
     const [show, setShow] = useState(false)
-    
+    const currentUser = getLoggedInUser()
+
     //*----------------------COMMENTS--------------------------------
 
     const getComments = (movieId) => {
@@ -45,7 +46,7 @@ export const GroupSavedMovieCard = ({movieObj, currentUser}) => {
         <div className="movie_card">
             <div className="movie_card_content">
                 <h4><span className="movie_name">{movieObj?.name}</span></h4>
-                <h5><span className="user_name">Saved By: {movieObj?.users.name}</span></h5>
+                <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
                 <img src={imgURL}/>
                 
                 <input
