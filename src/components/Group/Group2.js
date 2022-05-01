@@ -37,11 +37,11 @@ export const GroupDisplay = ({getLoggedInUser}) => {
         <>
             <div className="group_display">
                 <h2>Group Movies</h2>
-                {friendsSavedMovies.map((singleMovie) => (<GroupSavedMovieCard movieObj={singleMovie} key={singleMovie.id} currentUser={currentUser}/>))}
+                {friendsSavedMovies.map((singleMovie) => (<GroupSavedMovieCard movieObj={singleMovie} key={singleMovie.id} currentUser={currentUser} getLoggedInUser={getLoggedInUser}/>))}
             </div>
             <div className="group_display">
                 <h2>Group Shows</h2>
-                {friendsSavedShows.map((singleShow) => (<GroupTVCard TVObj={singleShow} key={singleShow.id}/>))}
+                {friendsSavedShows.map((singleShow) => (<GroupTVCard TVObj={singleShow} key={singleShow.id} getLoggedInUser={getLoggedInUser}/>))}
             </div>
         </>
     )

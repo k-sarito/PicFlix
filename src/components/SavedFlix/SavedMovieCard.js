@@ -3,10 +3,11 @@ import { getMovieStreaming } from "../modules/external/TMDBManager";
 import { getCommentsByMovieId , postComment } from "../modules/local/CommentManager";
 import { CommentCard } from "../comments/CommentCard";
 import { Modal } from "../modal/Modal";
+import {deleteMovie} from "../modules/local/SavedFlixManager"
 import "./SavedCard.css"
 
 
-export const SavedMovieCard = ({movieObj, getLoggedInUser}) => {
+export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj?.img}`
     const [seeDetails, updateSeeDetails] = useState(false)
     const [movieComments, setMovieComments] = useState([])
@@ -14,8 +15,8 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser}) => {
         body: ""
     })
     const [show, setShow] = useState(false)
-    const [streaming, setStreaming] = useState([])
     const currentUser = getLoggedInUser()
+    const [streaming, setStreaming] = useState([])
 
     const getComments = (movieId) => {
         setShow(true)
@@ -46,6 +47,8 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser}) => {
 
     
 
+    
+
     const MovieCardArr = [
         <div className="movie_card">
             <div className="movie_card_content">
@@ -64,7 +67,7 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser}) => {
                 <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
                     {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id}/>))}
                 </Modal>
-                <button className="saved_movie_delete_btn">Delete</button>
+                <button className="saved_movie_delete_btn" onClick={handleDeleteMovie}>Delete</button>
             </div>
         </div>
         ,
