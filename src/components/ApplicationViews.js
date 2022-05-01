@@ -5,7 +5,7 @@ import { Register } from "./auth/Register";
 import { MovieList } from "./Home/MovieList";
 import { TVList } from "./Home/TVList";
 import { MyFlix } from "./SavedFlix/MyFlix";
-import { Group } from "./Group/Group";
+import { GroupDisplay } from "./Group/Group2";
 
 
 export const ApplicationViews = ({
@@ -24,7 +24,7 @@ export const ApplicationViews = ({
                     <Route path="/" element={<MovieList getLoggedInUser={getLoggedInUser}/>}/>
                     <Route path="/home/tv" element={<TVList getLoggedInUser={getLoggedInUser}/>}/>
                     <Route path="/MyFlix" element={<MyFlix getLoggedInUser={getLoggedInUser}/>}/>
-                    <Route path="/Group" element={<Group getLoggedInUser={getLoggedInUser}/>}/>
+                    <Route path="/Group" element={<GroupDisplay getLoggedInUser={getLoggedInUser}/>}/>
                 </Route>
                 <Route path="/login" element={<Login setAuthUser={setAuthUser} />} />
                 <Route path="/register" element={<Register />} />
