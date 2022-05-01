@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getCommentsByShowId , postTVComment } from "../modules/local/CommentManager";
 import { CommentCard } from "../comments/CommentCard"
 import { Modal } from "../modal/Modal";
@@ -41,6 +41,16 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
 
         postTVComment(newComment).then(setShow(false))
     }
+
+    const checkIfGroupWatch = (showObj) => {
+        if(showObj.groupWatch === true){
+            setGroupShow(true)
+        }
+    }
+
+    useEffect(() => {
+        checkIfGroupWatch(TVObj)
+    }, [])
 
     const handleGroupWatch = (showObj) => {
         setGroupShow(true)
