@@ -37,7 +37,7 @@ export const GroupDisplay = ({getLoggedInUser}) => {
         <>
             <div className="group_display">
                 <h2>Group Movies</h2>
-                {friendsSavedMovies.map((singleMovie) => (<GroupSavedMovieCard movieObj={singleMovie} key={singleMovie.id} currentUser={currentUser} getLoggedInUser={getLoggedInUser}/>))}
+                {friendsSavedMovies.map((singleMovie) => (<GroupSavedMovieCard movieObj={singleMovie} key={singleMovie.id} getLoggedInUser={getLoggedInUser}/>))}
             </div>
             <div className="group_display">
                 <h2>Group Shows</h2>

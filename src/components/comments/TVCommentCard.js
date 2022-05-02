@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-export const CommentCard = ({commentObj, getLoggedInUser, handleEditComment}) => {
+export const TVCommentCard = ({commentObj, getLoggedInUser, handleEditComment}) => {
     const currentUser = getLoggedInUser()
     const [editView, setEditView] = useState(false)
     const [editedComment, setEditedComment] = useState({
@@ -23,7 +23,7 @@ export const CommentCard = ({commentObj, getLoggedInUser, handleEditComment}) =>
         let commentObjCopy = {...Obj}
         let newObj = {
             id: commentObjCopy.id,
-            movieId: commentObjCopy.movieId,
+            savedTVId: commentObjCopy.savedTVId,
             body: editedComment.body
         }
         setEditedObj(newObj)

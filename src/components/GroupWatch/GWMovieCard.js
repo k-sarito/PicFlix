@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { getCommentsByMovieId, postComment } from "../modules/local/CommentManager";
 import { CommentCard } from "../comments/CommentCard";
+import { editMovieComment } from "../modules/local/CommentManager";
 import { Modal } from "../modal/Modal";
 
 export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
@@ -42,6 +43,16 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
         postComment(newComment).then(setShow(false))
     }
 
+    const handleEditComment = (commentObj) => {
+        editMovieComment(commentObj)
+        .then(() => {
+            getCommentsByMovieId(commentObj.movieId)
+            .then(comments => {
+                setShow(false)
+                setMovieComments(comments)})
+        })
+    }
+
     const MovieCardArr = [
         <div className="movie_card">
             <div className="movie_card_content">
@@ -59,7 +70,7 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(true)} id={`details_btn_${movieObj.movieId}`}>Details</button>
                 <button onClick={() => getComments(movieObj.id)}>Comments</button>
                 <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
-                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id}/>))}
+                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleEditComment={handleEditComment}/>))}
                 </Modal>
                 {/* {()=> {if(currentUser === movieObj?.usersId){
                     return <button className="saved_movie_delete_btn">Delete</button>
@@ -71,6 +82,7 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
         <div className="movie_card">
             <div className="movie_card_content">
                 <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
                 <img src={imgURL}/>
                 
                 <input
@@ -89,7 +101,7 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
                 <button onClick={() => getComments(movieObj.id)}>Comments</button>
                 <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
-                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id}/>))}
+                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleEditComment={handleEditComment}/>))}
                 </Modal>
                 {/* {()=> {if(currentUser === movieObj?.usersId){
                     return <button className="saved_movie_delete_btn">Delete</button>

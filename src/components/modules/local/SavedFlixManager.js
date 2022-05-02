@@ -77,3 +77,8 @@ export const getAllGroupWatch = () => {
     return fetch (`${localURL}/savedFlix?&groupWatch=true&_expand=users`)
     .then(result => result.json())
 }
+
+export const getAllGroupWatchTV = () => {
+    return fetch (`${localURL}/savedTV?&groupWatch=true&_expand=users`)
+    .then(result => result.json())
+}
