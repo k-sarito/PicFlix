@@ -5,7 +5,6 @@ import { saveFlic, saveTV } from "../modules/local/SavedFlixManager";
 import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById } from "../modules/external/TMDBManager";
 
 export const MovieList = ({getLoggedInUser}) => {
-    // const [movie, setMovie] = useState({})
     const navigate = useNavigate()
     const [movie, setMovie] = useState([])
     const [keyword, setKeyword] = useState({
@@ -13,10 +12,13 @@ export const MovieList = ({getLoggedInUser}) => {
     })
    
 
+    //TODO BROWSE 1. Grabs the most popular movies regardless of genre
 
     const getMovie = () => {
         return getPopularMovies()
     }
+
+    //TODO 3. Called when genre dropdown menu is changed, calls for most popular movies by genre code, sets movie state with the responses
 
     const genreInputChange = (event) => {
         let genre = event.target.value
@@ -26,6 +28,10 @@ export const MovieList = ({getLoggedInUser}) => {
            return setMovie(movies.results)
         })
     }
+
+    //*-----------------------------------------------------SAVE-------------------------------------------------
+
+    //TODO Movie Card is factoring whether an incoming media type is a movie or TV show, and assigning a different button for each. If either is clicked, creates an object with the desired info and posts to the movie or show sections of the database. 
 
     const HandleSaveTV = (event) => {
         return getTvById(event.target.id)
@@ -47,8 +53,8 @@ export const MovieList = ({getLoggedInUser}) => {
     }
     
     const HandleSaveFlic = (event) => {
-        console.log(event.target.id)
-        console.log('here')
+        // console.log(event.target.id)
+        // console.log('here')
         return getMovieById(event.target.id)
         .then(newMovie => {
             let addedMovie = {
@@ -68,12 +74,17 @@ export const MovieList = ({getLoggedInUser}) => {
         
     }
 
+    //*-----------------------------------------------SEARCH--------------------------------------------------------------
+
+    // TODO Next, we take the keyword and slap it into the search fetch, and it sets the movie state with the results
+
     const handleSearch = (e) => {
         e.preventDefault()
         return searchTMDB(keyword.search_field)
         .then(movies => {
            
             for ( let i = 0; i < movies.results.length; i++) {
+                //TODO This is a way to determine if the search result is an actor. Actors have a known_for key, and the movies inside are likely what the user is looking for. 
                 if(movies.results[i].known_for){
                     console.log(movies.results[i].known_for)
                     setMovie(movies.results[i].known_for)
@@ -85,6 +96,8 @@ export const MovieList = ({getLoggedInUser}) => {
             }
         })
     }
+
+    //TODO First, handleInput watches the input field and with every change, sets the search_field key in the keyword object to the inputs' value
     
     const handleInput = (event) => {
         const currentInput = {...keyword}
@@ -93,6 +106,10 @@ export const MovieList = ({getLoggedInUser}) => {
         
         setKeyword(currentInput)
     }
+
+    //*-------------------------------------------USE EFFECTS---------------------------------------------------------------
+
+    //TODO BROWSE 2. Initial useEffect on load, sets movie state with all popular movies
 
     useEffect(() => {
         getMovie().then(APImovie => {
@@ -113,7 +130,7 @@ export const MovieList = ({getLoggedInUser}) => {
             <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
         </div>
         <h4>Browse</h4>
-        <button type="button" onClick={() => navigate("/home/tv")}>TV</button>
+        <button type="button" onClick={() => navigate("/home/tv")}>Switch to TV</button>
         <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
             <option value="---">Choose a Genre</option>
             <option value="28">Action</option>
@@ -137,9 +154,7 @@ export const MovieList = ({getLoggedInUser}) => {
         </select>
         <div className="preview">
             {movie.map((singleMovie) => (<MovieCard movieObj={singleMovie} key={singleMovie.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
-            {/* <h4><span className="movie_name">{movie.title}</span></h4>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
-                <p>{movie.overview}</p> */}
+            
 
         </div>
         </>

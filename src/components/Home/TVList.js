@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { saveFlic, saveTV } from "../modules/local/SavedFlixManager";
 import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById, getPopularTV, getTVByGenre } from "../modules/external/TMDBManager";
 
+//*------THIS IS A CLONE OF MOVIE LIST, FOR TV-------------------------------------------------------------------------
 
 export const TVList = ({getLoggedInUser}) => {
     const navigate = useNavigate()
@@ -105,7 +106,7 @@ export const TVList = ({getLoggedInUser}) => {
             <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
         </div>
         <h4>Browse</h4>
-        <button type="button" onClick={() => navigate("/")}>Movies</button>
+        <button type="button" onClick={() => navigate("/")}>Back to Movies</button>
         <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
             <option value="---">Choose a Genre</option>
             <option value="10759">Action/Adventure</option>

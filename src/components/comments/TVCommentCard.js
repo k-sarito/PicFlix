@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-export const TVCommentCard = ({commentObj, getLoggedInUser, handleEditComment}) => {
+export const TVCommentCard = ({commentObj, getLoggedInUser, handleEditComment, handleDeleteTVComment}) => {
     const currentUser = getLoggedInUser()
     const [editView, setEditView] = useState(false)
     const [editedComment, setEditedComment] = useState({
@@ -13,7 +13,7 @@ export const TVCommentCard = ({commentObj, getLoggedInUser, handleEditComment}) 
             return (
                 <div className="btn_container">
                 <button type="button" onClick={() => displayEditMovieComment()}>Edit</button>
-                <button type="button">Delete</button>
+                <button type="button" onClick={() => handleDeleteTVComment(commentObj)}>Delete</button>
                 </div>
             )
         }

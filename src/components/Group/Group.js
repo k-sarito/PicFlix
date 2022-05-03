@@ -44,7 +44,6 @@ export const Group = ({getLoggedInUser}) => {
         return (
             <>
                 <div className="things">
-                    <p>you suck</p>
                     {()=> {
                          for (let i=0; i<friendsSavedMovies.length; i++){
                             return friendsSavedMovies[i].map((singleMovie) => { (

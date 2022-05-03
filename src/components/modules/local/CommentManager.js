@@ -49,3 +49,15 @@ export const editShowComment = (commentObj) => {
         body: JSON.stringify(commentObj)
     }).then(response => response.json())
 }
+
+export const deleteMovieComment = (commentId) => {
+    return fetch (`${localURL}/movieComments/${commentId}`, {
+        method: "DELETE"
+    }).then(result => result.json())
+}
+
+export const deleteShowComment = (commentId) => {
+    return fetch (`${localURL}/showComments/${commentId}`, {
+        method: "DELETE"
+    }).then(result => result.json())
+}

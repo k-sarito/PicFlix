@@ -8,6 +8,9 @@ export const GroupWatch = ({getLoggedInUser}) => {
     const [suggestedMovies, updateSuggestedMovies] = useState([])
     const [suggestedShows, updateSuggestedShows] = useState([])
 
+    //*------------------------GROUP WATCH----------------------------------------------------------
+
+    //TODO GROUP WATCH 2. These functions fetch all movies from the database with groupWatch true, pop them into the movie/show states that are then mapped and displayed. 
 
     const getAllSuggestedMovies = () => {
         getAllGroupWatch()
@@ -23,6 +26,8 @@ export const GroupWatch = ({getLoggedInUser}) => {
         })
     }
 
+    //TODO GROUP WATCH 1. useEffects calling functions on load. 
+
     useEffect(() => {
         getAllSuggestedMovies()
     }, [])
@@ -34,12 +39,12 @@ export const GroupWatch = ({getLoggedInUser}) => {
 
     return (
         <>
+            <h2>Suggested Movies</h2>
             <div className="group_display">
-                <h2>Suggested Movies</h2>
                 {suggestedMovies.map((singleMovie) => (<GroupWatchMovieCard movieObj={singleMovie} key={singleMovie.id} getLoggedInUser={getLoggedInUser}/>))}
             </div>
+            <h2>Suggested Shows</h2>
             <div className="group_display">
-                <h2>Suggested Shows</h2>
                 {suggestedShows.map((singleShow) => (<GroupWatchTVCard 
                 TVObj={singleShow} key={singleShow.id} getLoggedInUser={getLoggedInUser}/>))}
             </div>

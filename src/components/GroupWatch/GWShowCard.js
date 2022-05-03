@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getCommentsByShowId , postTVComment} from "../modules/local/CommentManager";
 import { TVCommentCard } from "../comments/TVCommentCard";
 import { editShowComment } from "../modules/local/CommentManager";
+import { deleteShowComment } from "../modules/local/CommentManager";
 import { Modal } from "../modal/Modal";
 
 
@@ -51,6 +52,16 @@ export const GroupWatchTVCard = ({TVObj, getLoggedInUser}) => {
         })
     }
 
+    const handleDeleteTVComment = (commentObj) => {
+        deleteShowComment(commentObj.id)
+        .then(() => {
+            getCommentsByShowId(commentObj.movieId)
+            .then(comments => {
+                setShow(false)
+                setTVComments(comments)})
+        })
+    }
+
     const TVCardArr = [
     <div className="movie_card">
         <div className="movie_card_content">
@@ -67,7 +78,7 @@ export const GroupWatchTVCard = ({TVObj, getLoggedInUser}) => {
             <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(true)} id={`details_btn_${TVObj.tvId}`}>Details</button>
             <button onClick={() => getComments(TVObj.id)}>Comments</button>
                 <Modal onClose={() => setShow(false)} show={show} name={TVObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostTVComment()} >
-                    {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} getLoggedInUser={getLoggedInUser}/> ))}
+                    {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} handleDeleteTVComment={handleDeleteTVComment} getLoggedInUser={getLoggedInUser}/> ))}
                 </Modal>
             {/* <button className="saved_movie_delete_btn">Delete</button> */}
         </div>
@@ -94,7 +105,7 @@ export const GroupWatchTVCard = ({TVObj, getLoggedInUser}) => {
             <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(false)} id={`details_btn_${TVObj.tvId}`}>Details</button>
             <button onClick={() => getComments(TVObj.id)}>Comments</button>
                 <Modal onClose={() => setShow(false)} show={show} name={TVObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostTVComment()} >
-                    {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} getLoggedInUser={getLoggedInUser}/> ))}
+                    {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} handleDeleteTVComment={handleDeleteTVComment} getLoggedInUser={getLoggedInUser}/> ))}
                 </Modal>
             {/* <button className="saved_movie_delete_btn">Delete</button> */}
         </div>

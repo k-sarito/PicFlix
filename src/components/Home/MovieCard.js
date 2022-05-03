@@ -3,6 +3,7 @@ import "./MovieCard.css"
 import { ButtonSort } from "../Utilities/Utilities";
 import { Link } from "react-router-dom";
 
+//TODO Button Sort is where the magic happens here. 
 export const MovieCard = ({ movieObj, HandleSaveFlic, HandleSaveTV }) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj?.poster_path}`
     return (
