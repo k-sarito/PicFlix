@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MovieCard } from "./MovieCard";
 import { saveFlic, saveTV } from "../modules/local/SavedFlixManager";
 import { getMovieById, getPopularMovies, getMoviesByGenre, searchTMDB, getTvById } from "../modules/external/TMDBManager";
+import "./MovieList.css"
 
 export const MovieList = ({getLoggedInUser}) => {
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ export const MovieList = ({getLoggedInUser}) => {
         return getPopularMovies()
     }
 
-    //TODO 3. Called when genre dropdown menu is changed, calls for most popular movies by genre code, sets movie state with the responses
+    //TODO BROWSE 3. Called when genre dropdown menu is changed, calls for most popular movies by genre code, sets movie state with the responses
 
     const genreInputChange = (event) => {
         let genre = event.target.value
@@ -76,7 +77,7 @@ export const MovieList = ({getLoggedInUser}) => {
 
     //*-----------------------------------------------SEARCH--------------------------------------------------------------
 
-    // TODO Next, we take the keyword and slap it into the search fetch, and it sets the movie state with the results
+    // TODO SEARCH 2. Next, we take the keyword and slap it into the search fetch, and it sets the movie state with the results
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -84,7 +85,7 @@ export const MovieList = ({getLoggedInUser}) => {
         .then(movies => {
            
             for ( let i = 0; i < movies.results.length; i++) {
-                //TODO This is a way to determine if the search result is an actor. Actors have a known_for key, and the movies inside are likely what the user is looking for. 
+                //TODO SEARCH 3. This is a way to determine if the search result is an actor. Actors have a known_for key, and the movies inside are likely what the user is looking for. 
                 if(movies.results[i].known_for){
                     console.log(movies.results[i].known_for)
                     setMovie(movies.results[i].known_for)
@@ -97,7 +98,7 @@ export const MovieList = ({getLoggedInUser}) => {
         })
     }
 
-    //TODO First, handleInput watches the input field and with every change, sets the search_field key in the keyword object to the inputs' value
+    //TODO SEARCH 1. First, handleInput watches the input field and with every change, sets the search_field key in the keyword object to the inputs' value
     
     const handleInput = (event) => {
         const currentInput = {...keyword}
@@ -125,12 +126,12 @@ export const MovieList = ({getLoggedInUser}) => {
     return (
         <>
         <div className="search_bar">
-            <label htmlFor="search_bar">Search</label>
+            <label htmlFor="search_bar"></label>
             <input type="text" id="search_field" placeholder="Find something specific" onChange={handleInput} />
             <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
         </div>
-        <h4>Browse</h4>
-        <button type="button" onClick={() => navigate("/home/tv")}>Switch to TV</button>
+        <div className="above_preview">
+            <button type="button" onClick={() => navigate("/home/tv")}>Switch to TV</button>
         <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
             <option value="---">Choose a Genre</option>
             <option value="28">Action</option>
@@ -152,6 +153,7 @@ export const MovieList = ({getLoggedInUser}) => {
             <option value="10752">War</option>
             <option value="37">Western</option>
         </select>
+        </div>
         <div className="preview">
             {movie.map((singleMovie) => (<MovieCard movieObj={singleMovie} key={singleMovie.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
             

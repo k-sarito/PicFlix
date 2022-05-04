@@ -100,12 +100,12 @@ export const TVList = ({getLoggedInUser}) => {
 
     return (
         <>
-        <div className="search_bar">
+        {/* <div className="search_bar">
             <label htmlFor="search_bar">Search</label>
             <input type="text" id="search_field" placeholder="Find something specific" onChange={handleInput} />
             <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
-        </div>
-        <h4>Browse</h4>
+        </div> */}
+        <h4>Browse Shows</h4>
         <button type="button" onClick={() => navigate("/")}>Back to Movies</button>
         <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
             <option value="---">Choose a Genre</option>

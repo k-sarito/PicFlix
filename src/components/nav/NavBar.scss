@@ -1,0 +1,160 @@
+$Black: #001219;
+$DarkBlue: #005F73;
+$Turqiose: #0A9396;
+$LightBlue: #94D2BD;
+$OffWhite: #E9D8A6;
+$Gold: #EE9B00;
+$Orange: #CA6702;
+$Sunset: #BB3E03;
+$Red: #AE2012;
+$DarkRed: #9B2226;
+
+
+nav {
+    background: linear-gradient(180deg, rgba(0,18,25,1) 32%, rgba(16,39,43,1) 43%, rgba(44,75,74,1) 66%, rgba(79,120,112,1) 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 1;
+    h3 {
+        margin-left: 1em;
+    }
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 35%;
+        margin-left: 3em;
+
+        li {            
+            width: 7em;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            .nav_link {
+                color: $LightBlue;
+                text-decoration: none;
+                width: 100%;
+            }
+            span {
+                transition: all 0.3s;
+            }            
+            :hover{
+                span {
+                    letter-spacing: 2px;
+                }
+                ::before{
+                    opacity: 1; 
+                    transform: scale(1, 1);
+                }
+            }
+            
+        }
+
+        
+    }
+}
+
+
+
+body {
+    margin: 0;
+}
+
+
+
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    $Red 0%,
+    $Orange 29%,
+    $Gold 57%,
+    $DarkRed 76%,
+    $Sunset 92%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s linear infinite;
+  display: inline-block;
+      font-size: 30px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.logout_container{
+    display: flex;
+    align-items: center;
+    // width: 20px;
+    // height: 100%;
+    margin-right: 3em;
+
+}
+.btn-two {
+    color: #FFF;
+    transition: all 0.5s;
+    position: relative; 
+    align-content: center;
+    width: 7em;
+    height: 1.5em;
+    margin-right: 3em;
+    span {
+     z-index: 2; 
+     display: block;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     color: $LightBlue;
+     cursor: pointer;
+     left: 30px; 
+     top: 5px;
+   }
+
+  }
+  .btn-two::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: rgba(44,75,74,0.1);
+  }
+  .btn-two::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: rgba(44,75,74,0.1);
+  }
+  .btn-two:hover::before {
+    transform: rotate(-45deg);
+    background-color: rgba(255,255,255,0);
+  }
+  .btn-two:hover::after {
+    transform: rotate(45deg);
+    background-color: rgba(255,255,255,0);
+  }
+
+  

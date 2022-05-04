@@ -1,0 +1,64 @@
+.above_preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 3em;
+  width: 25%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: .3em;
+}
+
+.preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 98%;
+  height: 10%;
+  border: solid 2px black;
+  overflow: auto;
+  background: -webkit-gradient(linear, left top, left bottom, from(#708e85), color-stop(48%, #90a49a), to(#9eada3));
+  background: linear-gradient(180deg, #708e85 0%, #90a49a 48%, #9eada3 100%);
+  margin-left: .2em;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #005F73;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px #001219;
+          box-shadow: inset 0 0 5px #001219;
+  border-radius: 10px;
+}
+
+.movie_card {
+  margin-left: .5em;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c4b4a), color-stop(17%, #2c4b4a), color-stop(57%, #4f7870));
+  background: linear-gradient(180deg, #2c4b4a 0%, #2c4b4a 17%, #4f7870 57%);
+  padding-left: .3em;
+  padding-right: .3em;
+  border-radius: 3px;
+  color: white;
+}
+
+.search_bar {
+  margin-top: .3em;
+  margin-left: .3em;
+}
+
+.search_bar input {
+  width: 20em;
+}
+/*# sourceMappingURL=MovieList.css.map */

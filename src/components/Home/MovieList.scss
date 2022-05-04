@@ -1,0 +1,62 @@
+$Black: #001219;
+$DarkBlue: #005F73;
+$Turqiose: #0A9396;
+$LightBlue: #94D2BD;
+$OffWhite: #E9D8A6;
+$Gold: #EE9B00;
+$Orange: #CA6702;
+$Sunset: #BB3E03;
+$Red: #AE2012;
+$DarkRed: #9B2226;
+
+body{
+    
+}
+
+.above_preview{
+    display: flex;
+    margin-top: 3em;
+    width: 25%;
+    flex-direction: row;
+    margin-left: .3em;
+}
+
+.preview {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    height: 10%;
+    border: solid 2px black;
+    overflow: auto;
+    background: linear-gradient(180deg, rgba(112,142,133,1) 0%, rgba(144,164,154,1) 48%, rgba(158,173,163,1) 100%);
+    margin-left: .2em;
+}
+::-webkit-scrollbar {
+    height: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: $DarkBlue;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 5px $Black;
+    border-radius: 10px;
+}
+
+.movie_card{
+    margin-left: .5em;
+    background: linear-gradient(180deg, rgba(44,75,74,1) 0%, rgba(44,75,74,1) 17%, rgba(79,120,112,1) 57%);
+    padding-left: .3em;
+    padding-right: .3em;
+    border-radius: 3px;
+    color: white;
+}
+
+.search_bar{
+    margin-top: .3em;
+    margin-left: .3em;
+    input {
+        width: 20em;
+    }
+}
+

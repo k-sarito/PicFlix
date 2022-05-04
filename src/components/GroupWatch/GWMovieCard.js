@@ -14,6 +14,11 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
     })
     const [show, setShow] = useState(false)
     const currentUser = getLoggedInUser()
+    const [voteObj, setVoteObj] = useState({
+        neutral: true, 
+        voteYes: false,
+        voteNo: false
+    })
 
     //*----------------------COMMENTS--------------------------------
 

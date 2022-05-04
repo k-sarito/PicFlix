@@ -1,0 +1,180 @@
+nav {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(32%, #001219), color-stop(43%, #10272b), color-stop(66%, #2c4b4a), to(#4f7870));
+  background: linear-gradient(180deg, #001219 32%, #10272b 43%, #2c4b4a 66%, #4f7870 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  z-index: 1;
+}
+
+nav h3 {
+  margin-left: 1em;
+}
+
+nav ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 35%;
+  margin-left: 3em;
+}
+
+nav ul li {
+  width: 7em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+nav ul li .nav_link {
+  color: #94D2BD;
+  text-decoration: none;
+  width: 100%;
+}
+
+nav ul li span {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+nav ul li :hover span {
+  letter-spacing: 2px;
+}
+
+nav ul li :hover ::before {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+
+body {
+  margin: 0;
+}
+
+.animate-charcter {
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg, #AE2012 0%, #CA6702 29%, #EE9B00 57%, #9B2226 76%, #BB3E03 92%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: textclip 5s linear infinite;
+          animation: textclip 5s linear infinite;
+  display: inline-block;
+  font-size: 30px;
+}
+
+@-webkit-keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.logout_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 3em;
+}
+
+.btn-two {
+  color: #FFF;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: relative;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 7em;
+  height: 1.5em;
+  margin-right: 3em;
+}
+
+.btn-two span {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #94D2BD;
+  cursor: pointer;
+  left: 30px;
+  top: 5px;
+}
+
+.btn-two::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(44, 75, 74, 0.1);
+}
+
+.btn-two::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(44, 75, 74, 0.1);
+}
+
+.btn-two:hover::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.btn-two:hover::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background-color: rgba(255, 255, 255, 0);
+}
+/*# sourceMappingURL=NavBar.css.map */
