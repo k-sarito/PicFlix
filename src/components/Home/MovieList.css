@@ -30,6 +30,7 @@
 
 ::-webkit-scrollbar {
   height: 10px;
+  background-color: rgba(144, 164, 154, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -44,13 +45,68 @@
 }
 
 .movie_card {
-  margin-left: .5em;
+  margin-left: 0.5em;
   background: -webkit-gradient(linear, left top, left bottom, from(#2c4b4a), color-stop(17%, #2c4b4a), color-stop(57%, #4f7870));
   background: linear-gradient(180deg, #2c4b4a 0%, #2c4b4a 17%, #4f7870 57%);
-  padding-left: .3em;
-  padding-right: .3em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  position: relative;
   border-radius: 3px;
-  color: white;
+  color: #94D2BD;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: black 2px 2px 10px;
+          box-shadow: black 2px 2px 10px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  max-width: 480px;
+}
+
+.movie_card .movie_card_content {
+  max-width: 203px;
+  word-wrap: break-word;
+}
+
+.movie_card .movie_card_header {
+  min-height: 85px;
+  color: #94D2BD;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.movie_card .movie_card_header .group_icon {
+  cursor: pointer;
+}
+
+.movie_card .save_movie_btn {
+  background: -webkit-gradient(linear, left top, left bottom, from(#bb3e03), to(#ee9b00));
+  background: linear-gradient(180deg, #bb3e03 0%, #ee9b00 100%);
+  color: #E9D8A6;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.movie_card aside {
+  float: right;
 }
 
 .search_bar {
@@ -60,5 +116,79 @@
 
 .search_bar input {
   width: 20em;
+}
+
+.movie_card_clicked {
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c4b4a), color-stop(17%, #2c4b4a), color-stop(57%, #4f7870));
+  background: linear-gradient(180deg, #2c4b4a 0%, #2c4b4a 17%, #4f7870 57%);
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  z-index: 25;
+  position: fixed;
+  left: 25%;
+  top: 21%;
+  border-radius: 3px;
+  color: #94D2BD;
+  overflow: hidden;
+  height: 442px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: black 2px 2px 10px;
+          box-shadow: black 2px 2px 10px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 50vw;
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-transition: all 0.23s ease-in-out 0s;
+  transition: all 0.23s ease-in-out 0s;
+}
+
+.movie_card_clicked .movie_card_content {
+  max-width: 203px;
+  word-wrap: break-word;
+}
+
+.movie_card_clicked .movie_card_header {
+  min-height: 85px;
+  color: #94D2BD;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.movie_card_clicked .movie_card_header .group_icon {
+  cursor: pointer;
+}
+
+.movie_card_clicked .save_movie_btn {
+  background-color: #BB3E03;
+  color: white;
+  border-radius: 6px;
+}
+
+.movie_card_clicked aside {
+  float: right;
+  padding-left: .5em;
+  padding-top: 1em;
+}
+
+.myFlix {
+  margin-left: 1em;
 }
 /*# sourceMappingURL=MovieList.css.map */

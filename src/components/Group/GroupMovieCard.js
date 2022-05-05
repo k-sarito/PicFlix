@@ -77,7 +77,6 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
                     value={movieObj?.movieId}
                     id='movieId'
                 ></input>
-            </div>
             <div className="saved_movie_btn_container">
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(true)} id={`details_btn_${movieObj.movieId}`}>Details</button>
                 <button onClick={() => getComments(movieObj.id)}>Comments</button>
@@ -85,9 +84,10 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
                     {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
                 </Modal>
             </div>
+            </div>
         </div>
         ,
-        <div className="movie_card">
+        <div className="movie_card_clicked">
             <div className="movie_card_content">
                 <h4><span className="movie_name">{movieObj?.name}</span></h4>
                 <img src={imgURL}/>
@@ -97,13 +97,6 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
                     value={movieObj?.movieId}
                     id='movieId'
                 ></input>
-            </div>
-            <div className="movie_card_details">
-                <p>Overview: {movieObj.overview}</p>
-                <p>Release: {movieObj.release}</p>
-                <p>Runtime: {movieObj.runtime}min</p>
-                <p>Rating: {movieObj.rating}</p>
-            </div>
             <div className="saved_movie_btn_container">
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
                 <button onClick={() => getComments(movieObj.id)}>Comments</button>
@@ -111,6 +104,13 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
                     {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
                 </Modal>
             </div>
+            </div>
+            <aside className="movie_card_details">
+                <p>Overview: {movieObj.overview}</p>
+                <p>Release: {movieObj.release}</p>
+                <p>Runtime: {movieObj.runtime}min</p>
+                <p>Rating: {movieObj.rating}</p>
+            </aside>
         </div>
     ]
 

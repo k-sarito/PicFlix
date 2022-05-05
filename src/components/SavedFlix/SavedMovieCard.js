@@ -133,13 +133,13 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
     //! These are svg's stolen from Iconoir.com. The icons there are super clean and easy to implement, but we aware that React gets a little fussy with the syntax. I had to change stroke-width to strokeWidth, for example, to get it to stop yelling at me. 
 
     const groupIconArr = [
-        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24"  fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => handleGroupWatch(movieObj)}>
+        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24"  fill="none" xmlns="http://www.w3.org/2000/svg" className="group_icon" onClick={() => handleGroupWatch(movieObj)}>
             <title>Add to Group Watch</title>
             <path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         ,
-        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => undoGroupWatch(movieObj)}>
+        <svg width="24" height="24" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="group_icon" onClick={() => undoGroupWatch(movieObj)}>
             <title>Remove from Group Watch</title>
             <path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" strokeLinecap="round"/>
             <path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="currentColor" strokeLinecap="round"/>
@@ -158,9 +158,9 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
         <div className="movie_card">
             <div className="movie_card_content">
             <div className="movie_card_header">
+                {groupShow ? groupIconArr[1] : groupIconArr[0]}
                 <h4><span className="movie_name">{movieObj?.name}</span></h4>
 
-                {groupShow ? groupIconArr[1] : groupIconArr[0]}
 
             </div>
 
@@ -171,7 +171,6 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
                     value={movieObj?.movieId}
                     id='movieId'
                 ></input>
-            </div>
             <div className="saved_movie_btn_container">
 
                 {/* //TODO DETAILS 3. When the details button is clicked, the seeDetails state is updated to true. */}
@@ -186,16 +185,17 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
                 </Modal>
                 <button className="saved_movie_delete_btn" onClick={handleDeleteMovie}>Delete</button>
             </div>
+            </div>
         </div>
         ,
-        <div className="movie_card">
+        <div className="movie_card_clicked">
             <div className="movie_card_content">
-            <div className="movie_card_header">
-                <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                <div className="movie_card_header">
+                    {groupShow ? groupIconArr[1] : groupIconArr[0]}
+                    <h4><span className="movie_name">{movieObj?.name}</span></h4>
 
-                {groupShow ? groupIconArr[1] : groupIconArr[0]}
 
-            </div>
+                </div>
                 <img src={imgURL}/>
                 
                 <input
@@ -203,21 +203,21 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
                     value={movieObj?.movieId}
                     id='movieId'
                 ></input>
+                <div className="saved_movie_btn_container">
+                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close Details</button>
+                    <button onClick={() => getComments(movieObj.id)}>Comments</button>
+                    <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
+                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
+                    </Modal>
+                    <button className="saved_movie_delete_btn">Delete</button>
+                </div>
             </div>
-            <div className="movie_card_details">
+            <aside className="movie_card_details">
                 <p>Overview: {movieObj.overview}</p>
                 <p>Release: {movieObj.release}</p>
                 <p>Runtime: {movieObj.runtime}min</p>
                 <p>Rating: {movieObj.rating}</p>
-            </div>
-            <div className="saved_movie_btn_container">
-                <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close Details</button>
-                <button onClick={() => getComments(movieObj.id)}>Comments</button>
-                <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
-                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
-                </Modal>
-                <button className="saved_movie_delete_btn">Delete</button>
-            </div>
+            </aside>
         </div>
     ]
 

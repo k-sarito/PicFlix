@@ -17,10 +17,10 @@ export const MovieCard = ({ movieObj, HandleSaveFlic, HandleSaveTV }) => {
                     value={movieObj?.id}
                     id='movieId'
                 ></input>
-            </div>
             <div className="preveiw_btn_container">
                 <ButtonSort movieObj={movieObj} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>
                 
+            </div>
             </div>
         </div>
     )

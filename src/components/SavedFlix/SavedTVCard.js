@@ -120,8 +120,8 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
     <div className="movie_card">
         <div className="movie_card_content">
             <div className="movie_card_header">
-            <h4><span className="movie_name">{TVObj?.name}</span></h4>
             {groupShow ? groupIconArr[1] : groupIconArr[0]}
+            <h4><span className="movie_name">{TVObj?.name}</span></h4>
 
 
             </div>
@@ -131,7 +131,6 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
                 value={TVObj?.tvId}
                 id='movieId'
             ></input>
-        </div>
         <div className="saved_movie_btn_container">
             <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(true)} id={`details_btn_${TVObj.tvId}`}>Details</button>
             <button onClick={() => getComments(TVObj.id)}>Comments</button>
@@ -140,9 +139,10 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
                 </Modal>
             <button type="button" className="saved_movie_delete_btn" onClick={handleDeleteShow}>Delete</button>
         </div>
+        </div>
     </div>
     ,
-    <div className="movie_card">
+    <div className="movie_card_clicked">
         <div className="movie_card_content">
             <h4><span className="movie_name">{TVObj?.name}</span></h4>
             <img src={imgURL}/>
@@ -151,13 +151,6 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
                 value={TVObj?.tvId}
                 id='movieId'
             ></input>
-        </div>
-        <div className="movie_card_details">
-            <p>Overview: {TVObj.overview}</p>
-            <p>Seasons: {TVObj.seasons}</p>
-            <p>Episodes: {TVObj.episodes}</p>
-            <p>Rating: {TVObj.rating}</p>
-        </div>
         <div className="saved_movie_btn_container">
             <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(false)} id={`details_btn_${TVObj.tvId}`}>Close Details</button>
             <button onClick={() => getComments(TVObj.id)}>Comments</button>
@@ -166,6 +159,13 @@ export const SavedTVCard = ({TVObj, getLoggedInUser, handleDeleteShow}) => {
                 </Modal>
                 <button type="button" className="saved_movie_delete_btn" onClick={handleDeleteShow}>Delete</button>
         </div>
+        </div>
+        <aside className="movie_card_details">
+            <p>Overview: {TVObj.overview}</p>
+            <p>Seasons: {TVObj.seasons}</p>
+            <p>Episodes: {TVObj.episodes}</p>
+            <p>Rating: {TVObj.rating}</p>
+        </aside>
     </div>
 
     ]

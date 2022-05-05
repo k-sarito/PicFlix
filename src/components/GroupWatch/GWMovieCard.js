@@ -82,7 +82,6 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
                     value={movieObj?.movieId}
                     id='movieId'
                 ></input>
-            </div>
             <div className="saved_movie_btn_container">
                 <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(true)} id={`details_btn_${movieObj.movieId}`}>Details</button>
                 <button onClick={() => getComments(movieObj.id)}>Comments</button>
@@ -91,40 +90,41 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
                 </Modal>
                 {/* {()=> {if(currentUser === movieObj?.usersId){
                     return <button className="saved_movie_delete_btn">Delete</button>
-
+                    
                 } else {return ''}}} */}
+            </div>
             </div>
         </div>
         ,
-        <div className="movie_card">
+        <div className="movie_card_clicked">
             <div className="movie_card_content">
-                <h4><span className="movie_name">{movieObj?.name}</span></h4>
-                <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
-                <img src={imgURL}/>
-                
-                <input
-                    type='hidden'
-                    value={movieObj?.movieId}
-                    id='movieId'
-                ></input>
+                    <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                    <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
+                    <img src={imgURL}/>
+                    
+                    <input
+                        type='hidden'
+                        value={movieObj?.movieId}
+                        id='movieId'
+                    ></input>
+                <div className="saved_movie_btn_container">
+                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
+                    <button onClick={() => getComments(movieObj.id)}>Comments</button>
+                    <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
+                        {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
+                    </Modal>
+                    {/* {()=> {if(currentUser === movieObj?.usersId){
+                        return <button className="saved_movie_delete_btn">Delete</button>
+                        
+                    } else {return ''}}} */}
+                </div>
             </div>
-            <div className="movie_card_details">
-                <p>Overview: {movieObj.overview}</p>
-                <p>Release: {movieObj.release}</p>
-                <p>Runtime: {movieObj.runtime}min</p>
-                <p>Rating: {movieObj.rating}</p>
-            </div>
-            <div className="saved_movie_btn_container">
-                <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
-                <button onClick={() => getComments(movieObj.id)}>Comments</button>
-                <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
-                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
-                </Modal>
-                {/* {()=> {if(currentUser === movieObj?.usersId){
-                    return <button className="saved_movie_delete_btn">Delete</button>
-
-                } else {return ''}}} */}
-            </div>
+            <aside className="movie_card_details">
+                    <p>Overview: {movieObj.overview}</p>
+                    <p>Release: {movieObj.release}</p>
+                    <p>Runtime: {movieObj.runtime}min</p>
+                    <p>Rating: {movieObj.rating}</p>
+            </aside>
         </div>
     ]
 

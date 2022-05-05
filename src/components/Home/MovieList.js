@@ -56,6 +56,7 @@ export const MovieList = ({getLoggedInUser}) => {
     const HandleSaveFlic = (event) => {
         // console.log(event.target.id)
         // console.log('here')
+        
         return getMovieById(event.target.id)
         .then(newMovie => {
             let addedMovie = {
