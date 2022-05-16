@@ -64,7 +64,9 @@ export const CommentCard = ({commentObj, getLoggedInUser, handleEditComment, han
 
     const editArr = [
         <div className="comment_card">
-            <h5>{commentObj.users.name}</h5>
+            <div className="comment_name">
+                <h5>{commentObj.users.name}</h5>
+            </div>
             <p>{commentObj.body}</p>
             {ButtonDisplay()}
         </div>
@@ -72,9 +74,12 @@ export const CommentCard = ({commentObj, getLoggedInUser, handleEditComment, han
         <div className="edit_comment_card">
             <h5>{commentObj.users.name}</h5>
             <input type="text" id="body"  onChange={handleInput} defaultValue={commentObj.body}/>
-            <button type="button" onClick={() => setEditView(false)}>Cancel</button>
-            {/* //TODO COMMENT 5. Patches the comment object in the database with the new object housed in the editedObj state.  */}
-            <button type="button" onClick={() => handleEditComment(editedObj)}>Submit</button>
+            <div className="btn_container">
+                <button type="button" onClick={() => setEditView(false)}>Cancel</button>
+                {/* //TODO COMMENT 5. Patches the comment object in the database with the new object housed in the editedObj state.  */}
+                <button type="button" onClick={() => handleEditComment(editedObj)}>Submit</button>
+
+            </div>
         </div>
     ]
 

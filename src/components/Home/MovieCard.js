@@ -9,8 +9,10 @@ export const MovieCard = ({ movieObj, HandleSaveFlic, HandleSaveTV }) => {
     return (
         <div className="movie_card">
             <div className="movie_card_content">
-                <h4><span className="movie_name">{movieObj?.title}</span></h4>
-                <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                <div className="preview_title">
+                    <h4><span className="movie_name">{movieObj?.title}</span></h4>
+                    <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                </div>
                 <img src={imgURL}/>
                 <input
                     type='hidden'

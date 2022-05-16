@@ -18,7 +18,7 @@ export const TVCard = ({ TVObj, HandleSaveFlic, HandleSaveTV }) => {
                     id='movieId'
                 ></input>
             <div className="preveiw_btn_container">
-            <button type="button" id={TVObj?.id} onClick={HandleSaveTV}>Save</button>
+            <button className="save_movie_btn" type="button" id={TVObj?.id} onClick={HandleSaveTV}>Save</button>
                 
             </div>
             </div>

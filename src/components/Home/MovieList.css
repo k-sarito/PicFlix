@@ -9,6 +9,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin-left: .3em;
+  font-family: "Montserrat", sans-serif;
 }
 
 .preview {
@@ -23,8 +24,8 @@
   height: 10%;
   border: solid 2px black;
   overflow: auto;
-  background: -webkit-gradient(linear, left top, left bottom, from(#708e85), color-stop(48%, #90a49a), to(#9eada3));
-  background: linear-gradient(180deg, #708e85 0%, #90a49a 48%, #9eada3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#838d90), color-stop(35%, #859ca1));
+  background: linear-gradient(180deg, #838d90 0%, #859ca1 35%);
   margin-left: .2em;
 }
 
@@ -44,15 +45,22 @@
   border-radius: 10px;
 }
 
+.group_display {
+  margin-left: 1em;
+}
+
 .movie_card {
   margin-left: 0.5em;
   background: -webkit-gradient(linear, left top, left bottom, from(#2c4b4a), color-stop(17%, #2c4b4a), color-stop(57%, #4f7870));
   background: linear-gradient(180deg, #2c4b4a 0%, #2c4b4a 17%, #4f7870 57%);
   padding-left: 0.3em;
+  font-family: "Forum", cursive;
+  font-weight: normal;
   padding-right: 0.3em;
   position: relative;
   border-radius: 3px;
   color: #94D2BD;
+  letter-spacing: .5px;
   margin-bottom: 1em;
   margin-top: 1em;
   display: -webkit-box;
@@ -67,13 +75,20 @@
   max-width: 480px;
 }
 
+.movie_card h4 {
+  margin-left: 5px;
+}
+
+.movie_card h5 {
+  margin-left: 5px;
+}
+
 .movie_card .movie_card_content {
   max-width: 203px;
   word-wrap: break-word;
 }
 
 .movie_card .movie_card_header {
-  min-height: 85px;
   color: #94D2BD;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -84,6 +99,7 @@
           flex-direction: row-reverse;
   -ms-flex-line-pack: center;
       align-content: center;
+  min-height: 4.7em;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -96,6 +112,14 @@
   cursor: pointer;
 }
 
+.movie_card .gw_movie_card_header {
+  min-height: 5em;
+}
+
+.movie_card .preview_title {
+  min-height: 3em;
+}
+
 .movie_card .save_movie_btn {
   background: -webkit-gradient(linear, left top, left bottom, from(#bb3e03), to(#ee9b00));
   background: linear-gradient(180deg, #bb3e03 0%, #ee9b00 100%);
@@ -103,6 +127,7 @@
   width: 100%;
   font-weight: bold;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .movie_card aside {
@@ -116,6 +141,10 @@
 
 .search_bar input {
   width: 20em;
+}
+
+h2 {
+  font-family: "Lora", serif;
 }
 
 .movie_card_clicked {
@@ -180,6 +209,7 @@
   background-color: #BB3E03;
   color: white;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .movie_card_clicked aside {
@@ -190,5 +220,9 @@
 
 .myFlix {
   margin-left: 1em;
+}
+
+.tv_display {
+  margin-top: 5%;
 }
 /*# sourceMappingURL=MovieList.css.map */

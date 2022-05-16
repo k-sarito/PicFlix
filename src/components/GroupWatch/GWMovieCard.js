@@ -73,8 +73,11 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
     const MovieCardArr = [
         <div className="movie_card">
             <div className="movie_card_content">
-                <h4><span className="movie_name">{movieObj?.name}</span></h4>
-                <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
+                <div className="gw_movie_card_header">
+                    <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                    <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
+
+                </div>
                 <img src={imgURL}/>
                 
                 <input
@@ -98,17 +101,19 @@ export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
         ,
         <div className="movie_card_clicked">
             <div className="movie_card_content">
+                <div className="gw_movie_card_header">
                     <h4><span className="movie_name">{movieObj?.name}</span></h4>
                     <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
-                    <img src={imgURL}/>
+                </div>
                     
+                    <img src={imgURL}/>
                     <input
                         type='hidden'
                         value={movieObj?.movieId}
                         id='movieId'
                     ></input>
                 <div className="saved_movie_btn_container">
-                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Details</button>
+                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close</button>
                     <button onClick={() => getComments(movieObj.id)}>Comments</button>
                     <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
                         {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}

@@ -39,13 +39,14 @@ nav ul {
 }
 
 nav ul li {
-  width: 7em;
+  width: 8em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-family: "Lora", serif;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -73,6 +74,9 @@ nav ul li :hover ::before {
 
 body {
   margin: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a8b2b4), color-stop(35%, #cbe0e4));
+  background: linear-gradient(180deg, #a8b2b4 0%, #cbe0e4 35%);
+  height: 100%;
 }
 
 .animate-charcter {

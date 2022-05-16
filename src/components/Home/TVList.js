@@ -100,38 +100,33 @@ export const TVList = ({getLoggedInUser}) => {
 
     return (
         <>
-        {/* <div className="search_bar">
-            <label htmlFor="search_bar">Search</label>
-            <input type="text" id="search_field" placeholder="Find something specific" onChange={handleInput} />
-            <button type="button" id="search_btn" onClick={handleSearch}>Search</button>
-        </div> */}
-        <h4>Browse Shows</h4>
-        <button type="button" onClick={() => navigate("/")}>Back to Movies</button>
-        <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
-            <option value="---">Choose a Genre</option>
-            <option value="10759">Action/Adventure</option>
-            <option value="16">Animation</option>
-            <option value="35">Comedy</option>
-            <option value="80">Crime</option>
-            <option value="99">Documentary</option>
-            <option value="18">Drama</option>
-            <option value="10751">Family</option>
-            <option value="10762">Kids</option>
-            <option value="9648">Mystery</option>
-            <option value="10763">News</option>
-            <option value="10764">Reality</option>
-            <option value="10765">Sci-Fi/Fantasy</option>
-            <option value="10767">Talk</option>
-            <option value="10767">War/Politics</option>
-            <option value="37">Western</option>
-        </select>
-        <div className="preview">
-            {TV.map((singleShow) => (<TVCard TVObj={singleShow} key={singleShow.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
-            {/* <h4><span className="movie_name">{movie.title}</span></h4>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}/>
-                <p>{movie.overview}</p> */}
+        <div className="tv_display">
+            
+            <button type="button" onClick={() => navigate("/")}>Back to Movies</button>
+            <select name="genres" id="genre_dropdown" onChange={genreInputChange}>
+                <option value="---">Choose a Genre</option>
+                <option value="10759">Action/Adventure</option>
+                <option value="16">Animation</option>
+                <option value="35">Comedy</option>
+                <option value="80">Crime</option>
+                <option value="99">Documentary</option>
+                <option value="18">Drama</option>
+                <option value="10751">Family</option>
+                <option value="10762">Kids</option>
+                <option value="9648">Mystery</option>
+                <option value="10763">News</option>
+                <option value="10764">Reality</option>
+                <option value="10765">Sci-Fi/Fantasy</option>
+                <option value="10767">Talk</option>
+                <option value="10767">War/Politics</option>
+                <option value="37">Western</option>
+            </select>
+            <div className="preview">
+                {TV.map((singleShow) => (<TVCard TVObj={singleShow} key={singleShow.id} HandleSaveFlic={HandleSaveFlic} HandleSaveTV={HandleSaveTV}/>))}
 
-        </div>
+            </div>
+        
+        </div>       
         </>
         
     )

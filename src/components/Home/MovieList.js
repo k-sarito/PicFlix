@@ -57,7 +57,7 @@ export const MovieList = ({getLoggedInUser}) => {
         // console.log(event.target.id)
         // console.log('here')
         
-        return getMovieById(event.target.id)
+        getMovieById(event.target.id)
         .then(newMovie => {
             let addedMovie = {
                 movieId : `${newMovie?.id}`,
@@ -72,6 +72,7 @@ export const MovieList = ({getLoggedInUser}) => {
             }
             // console.log(addedMovie)
             saveFlic(addedMovie)
+            
         })
         
     }

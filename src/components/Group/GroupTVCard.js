@@ -79,7 +79,7 @@ export const GroupTVCard = ({TVObj, getLoggedInUser}) => {
                 <Modal onClose={() => setShow(false)} show={show} name={TVObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostTVComment()} >
                     {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} handleDeleteTVComment={handleDeleteTVComment} getLoggedInUser={getLoggedInUser}/> ))}
                 </Modal>
-            {/* <button className="saved_movie_delete_btn">Delete</button> */}
+            
         </div>
         </div>
     </div>
@@ -94,12 +94,12 @@ export const GroupTVCard = ({TVObj, getLoggedInUser}) => {
                 id='movieId'
             ></input>
         <div className="saved_movie_btn_container">
-            <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(false)} id={`details_btn_${TVObj.tvId}`}>Details</button>
+            <button className="saved_movie_details_btn" onClick={()=> updateSeeDetails(false)} id={`details_btn_${TVObj.tvId}`}>Close</button>
             <button onClick={() => getComments(TVObj.id)}>Comments</button>
                 <Modal onClose={() => setShow(false)} show={show} name={TVObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostTVComment()} >
                     {TVComments.map((comment) => (<TVCommentCard commentObj={comment} key={comment.id} handleEditComment={handleEditComment} handleDeleteTVComment={handleDeleteTVComment} getLoggedInUser={getLoggedInUser}/> ))}
                 </Modal>
-            {/* <button className="saved_movie_delete_btn">Delete</button> */}
+            
         </div>
         </div>
         <aside className="movie_card_details">

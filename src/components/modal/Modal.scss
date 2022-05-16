@@ -1,0 +1,100 @@
+$Black: #001219;
+$DarkBlue: #005F73;
+$Turqiose: #0A9396;
+$LightBlue: #94D2BD;
+$OffWhite: #E9D8A6;
+$Gold: #EE9B00;
+$Orange: #CA6702;
+$Sunset: #BB3E03;
+$Red: #AE2012;
+$DarkRed: #9B2226;
+
+$Body-font: 'Montserrat', sans-serif;
+$Movie-font: 'Forum', cursive;
+$Alt-Movie-font: 'Lora', serif;
+
+
+.modal {
+    position: fixed;
+    
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    input {
+        width: 98%;
+    }
+  }
+  
+  .modal_header, .modal_footer {
+    padding: 10px;
+  }
+
+  .modal_header{
+    background: linear-gradient(180deg, rgba(0,18,25,1) 32%, rgba(16,39,43,1) 43%, rgba(44,75,74,1) 66%, rgba(79,120,112,1) 100%);
+    color: #eee;
+    border-radius: 10px 10px 0px 0px;
+}
+  
+  .modal_title {
+    margin: 0;
+    color: white;
+    font-size: large;
+  }
+  
+  .modal_body {
+    padding-right: 1em;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background-color: #eee;
+    min-width: 20em;
+    overflow: auto;
+    height: 25em;
+  }
+
+  .comment_card {
+    color: #001219;
+    margin-bottom: 0;
+    margin-top: 0;
+    h5 {
+        background-color: $DarkBlue;
+        color: #eee;
+        width: 100%;
+        font-size: large;
+        padding-left: .3em;
+        margin-top: .5em;
+        
+    }
+    
+    p {
+        margin-left: .5em;
+    }
+    .btn_container{
+        display: flex;
+        justify-content: flex-end;
+    }
+  }
+
+  .edit_comment_card {
+    h5 {
+        background-color: $DarkBlue;
+        color: #eee;
+        font-size: large;    
+    }
+    .btn_container{
+        display: flex;
+        justify-content: flex-end;
+    }
+  }
+  .modal_footer{
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  

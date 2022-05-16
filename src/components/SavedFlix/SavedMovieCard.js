@@ -204,7 +204,7 @@ export const SavedMovieCard = ({movieObj, getLoggedInUser, handleDeleteMovie}) =
                     id='movieId'
                 ></input>
                 <div className="saved_movie_btn_container">
-                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close Details</button>
+                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close</button>
                     <button onClick={() => getComments(movieObj.id)}>Comments</button>
                     <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
                     {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}

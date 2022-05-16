@@ -9,6 +9,10 @@ $Sunset: #BB3E03;
 $Red: #AE2012;
 $DarkRed: #9B2226;
 
+$Body-font: 'Montserrat', sans-serif;
+$Movie-font: 'Forum', cursive;
+$Alt-Movie-font: 'Lora', serif;
+
 
 nav {
     background: linear-gradient(180deg, rgba(0,18,25,1) 32%, rgba(16,39,43,1) 43%, rgba(44,75,74,1) 66%, rgba(79,120,112,1) 100%);
@@ -30,9 +34,10 @@ nav {
         margin-left: 3em;
 
         li {            
-            width: 7em;
+            width: 8em;
             align-items: center;
             justify-content: center;
+            font-family: $Alt-Movie-font;
             transition: all 0.3s;
             .nav_link {
                 color: $LightBlue;
@@ -62,8 +67,8 @@ nav {
 
 body {
     margin: 0;
-    // height: 100%;
-    // overflow: hidden;
+    background: linear-gradient(180deg, rgba(168,178,180,1) 0%, rgba(203,224,228,1) 35%);
+    height: 100%;
 }
 
 
