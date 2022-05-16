@@ -15,6 +15,16 @@ export const postComment = (commentObj) => {
     }).then(response => response.json())
 }
 
+export const editMovieComment = (commentObj) => {
+    return fetch (`${localURL}/movieComments/${commentObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(commentObj)
+    }).then(response => response.json())
+}
+
 export const getCommentsByShowId = (showId) => {
     return fetch (`${localURL}/showComments?&savedTVId=${showId}&_expand=users`)
     .then(response => response.json())
@@ -28,4 +38,26 @@ export const postTVComment = (commentObj) => {
         },
         body: JSON.stringify(commentObj)
     }).then(response => response.json())
+}
+
+export const editShowComment = (commentObj) => {
+    return fetch (`${localURL}/showComments/${commentObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(commentObj)
+    }).then(response => response.json())
+}
+
+export const deleteMovieComment = (commentId) => {
+    return fetch (`${localURL}/movieComments/${commentId}`, {
+        method: "DELETE"
+    }).then(result => result.json())
+}
+
+export const deleteShowComment = (commentId) => {
+    return fetch (`${localURL}/showComments/${commentId}`, {
+        method: "DELETE"
+    }).then(result => result.json())
 }

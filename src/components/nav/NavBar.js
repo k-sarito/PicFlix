@@ -6,24 +6,35 @@ import "./NavBar.css"
 export const NavBar = ({clearUser}) => {
     return (
         <nav>
-            <h1>PicFlix</h1>
+            <div class="container">
+                <div class="row">
+                     <div class="col-md-12 text-center">
+                         <h3 class="animate-charcter"> PICFLIX</h3>
+                    </div>
+                </div>
+            </div>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link className="nav_link" to="/"><span>Home</span></Link>
                 </li>
                 <li>
-                    <Link to="/MyFlix">MyFlix</Link>
+                    <Link className="nav_link" to="/MyFlix"><span>MyFlix</span></Link>
                 </li>
                 <li>
-                    <Link to="/Group">Group</Link>
+                    <Link className="nav_link" to="/Group"><span>Group</span></Link>
                 </li>
                 <li>
-                    <Link to="/NowPlaying">Now Playing</Link>
+                    <Link className="nav_link" to="/GroupWatch"><span>Group Watch</span></Link>
                 </li>
-                <li>
-                    <button type="button" onClick={clearUser}>Logout</button>
-                </li>
+                
             </ul>
+            <div className="logout_container">
+                <div className="box-2">
+                    <div className="btn btn-two">
+                        <span onClick={clearUser}>Log Out</span>
+                    </div>
+                </div>
+            </div>
         </nav>
     )
 }

@@ -54,11 +54,31 @@ export const getExclusiveTV = (userId) => {
 }
 
 export const groupWatchTV = (showObj) => {
-    return fetch (`${localURL}/savedTV?&id=${showObj.id}`, {
+    return fetch (`${localURL}/savedTV/${showObj.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type" : "application/json"
         },
         body: JSON.stringify(showObj)
     }).then(response => response.json())
+}
+
+export const groupWatchMovie = (movieObj) => {
+    return fetch (`${localURL}/savedFlix/${movieObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(movieObj)
+    }).then(response => response.json())
+}
+
+export const getAllGroupWatch = () => {
+    return fetch (`${localURL}/savedFlix?&groupWatch=true&_expand=users`)
+    .then(result => result.json())
+}
+
+export const getAllGroupWatchTV = () => {
+    return fetch (`${localURL}/savedTV?&groupWatch=true&_expand=users`)
+    .then(result => result.json())
 }

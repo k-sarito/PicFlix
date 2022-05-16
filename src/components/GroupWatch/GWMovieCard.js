@@ -5,7 +5,7 @@ import { editMovieComment } from "../modules/local/CommentManager";
 import { deleteMovieComment } from "../modules/local/CommentManager";
 import { Modal } from "../modal/Modal";
 
-export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
+export const GroupWatchMovieCard = ({movieObj, getLoggedInUser}) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj?.img}`
     const [seeDetails, updateSeeDetails] = useState(false)
     const [movieComments, setMovieComments] = useState([])
@@ -14,7 +14,12 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
     })
     const [show, setShow] = useState(false)
     const currentUser = getLoggedInUser()
-    
+    const [voteObj, setVoteObj] = useState({
+        neutral: true, 
+        voteYes: false,
+        voteNo: false
+    })
+
     //*----------------------COMMENTS--------------------------------
 
     const getComments = (movieId) => {
@@ -70,7 +75,7 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
             <div className="movie_card_content">
                 <div className="gw_movie_card_header">
                     <h4><span className="movie_name">{movieObj?.name}</span></h4>
-                    <h5><span className="user_name">Saved By: {movieObj?.users.name}</span></h5>
+                    <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
 
                 </div>
                 <img src={imgURL}/>
@@ -86,33 +91,44 @@ export const GroupSavedMovieCard = ({movieObj, getLoggedInUser}) => {
                 <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
                     {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
                 </Modal>
+                {/* {()=> {if(currentUser === movieObj?.usersId){
+                    return <button className="saved_movie_delete_btn">Delete</button>
+                    
+                } else {return ''}}} */}
             </div>
             </div>
         </div>
         ,
         <div className="movie_card_clicked">
             <div className="movie_card_content">
-                <h4><span className="movie_name">{movieObj?.name}</span></h4>
-                <img src={imgURL}/>
-                
-                <input
-                    type='hidden'
-                    value={movieObj?.movieId}
-                    id='movieId'
-                ></input>
-            <div className="saved_movie_btn_container">
-                <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close</button>
-                <button onClick={() => getComments(movieObj.id)}>Comments</button>
-                <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
-                    {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
-                </Modal>
-            </div>
+                <div className="gw_movie_card_header">
+                    <h4><span className="movie_name">{movieObj?.name}</span></h4>
+                    <h5><span className="user_name">Suggested By: {movieObj?.users.name}</span></h5>
+                </div>
+                    
+                    <img src={imgURL}/>
+                    <input
+                        type='hidden'
+                        value={movieObj?.movieId}
+                        id='movieId'
+                    ></input>
+                <div className="saved_movie_btn_container">
+                    <button className="saved_movie_details_btn" onClick={() => updateSeeDetails(false)} id={`details_btn_${movieObj.movieId}`}>Close</button>
+                    <button onClick={() => getComments(movieObj.id)}>Comments</button>
+                    <Modal onClose={() => setShow(false)} show={show} name={movieObj.name} textId="body" handleInput={handleInput} onSubmit={() => handlePostComment()} >
+                        {movieComments.map((comment) => (<CommentCard commentObj={comment} key={comment.id} getLoggedInUser={getLoggedInUser} handleDeleteComment={handleDeleteComment} handleEditComment={handleEditComment}/>))}
+                    </Modal>
+                    {/* {()=> {if(currentUser === movieObj?.usersId){
+                        return <button className="saved_movie_delete_btn">Delete</button>
+                        
+                    } else {return ''}}} */}
+                </div>
             </div>
             <aside className="movie_card_details">
-                <p>Overview: {movieObj.overview}</p>
-                <p>Release: {movieObj.release}</p>
-                <p>Runtime: {movieObj.runtime}min</p>
-                <p>Rating: {movieObj.rating}</p>
+                    <p>Overview: {movieObj.overview}</p>
+                    <p>Release: {movieObj.release}</p>
+                    <p>Runtime: {movieObj.runtime}min</p>
+                    <p>Rating: {movieObj.rating}</p>
             </aside>
         </div>
     ]

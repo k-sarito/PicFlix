@@ -1,12 +1,2 @@
-.preview {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 10%;
-    border: solid 2px black;
-    overflow: auto;
-}
 
-.movie_card{
-    margin-left: .5em;
-}
+

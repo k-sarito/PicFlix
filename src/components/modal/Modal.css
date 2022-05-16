@@ -1,28 +1,106 @@
 .modal {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+}
+
+.modal input {
+  width: 98%;
 }
 
 .modal_header, .modal_footer {
-    padding: 10px;
+  padding: 10px;
+}
+
+.modal_header {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(32%, #001219), color-stop(43%, #10272b), color-stop(66%, #2c4b4a), to(#4f7870));
+  background: linear-gradient(180deg, #001219 32%, #10272b 43%, #2c4b4a 66%, #4f7870 100%);
+  color: #eee;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .modal_title {
-    margin: 0;
-    color: white;
+  margin: 0;
+  color: white;
+  font-size: large;
 }
 
 .modal_body {
-    padding: 10px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    background-color: #eee;
+  padding-right: 1em;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background-color: #eee;
+  min-width: 20em;
+  overflow: auto;
+  height: 25em;
 }
+
+.comment_card {
+  color: #001219;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.comment_card h5 {
+  background-color: #005F73;
+  color: #eee;
+  width: 100%;
+  font-size: large;
+  padding-left: .3em;
+  margin-top: .5em;
+}
+
+.comment_card p {
+  margin-left: .5em;
+}
+
+.comment_card .btn_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.edit_comment_card h5 {
+  background-color: #005F73;
+  color: #eee;
+  font-size: large;
+}
+
+.edit_comment_card .btn_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.modal_footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+/*# sourceMappingURL=Modal.css.map */

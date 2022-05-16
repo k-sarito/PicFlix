@@ -2,6 +2,8 @@ import React from "react";
 import "./MovieCard.css"
 import { Link } from "react-router-dom";
 
+//! I don't think I ever actually used this. I could be wrong but I'm pretty sure it was an early template and I used it as a reference. 
+
 export const MovieDetails = ({ movieObj }) => {
     const imgURL = `https://image.tmdb.org/t/p/w200${movieObj.poster_path}`
     return (

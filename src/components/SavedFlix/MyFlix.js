@@ -11,6 +11,11 @@ export const MyFlix = ({getLoggedInUser}) => {
 
     const currentUser = getLoggedInUser()
 
+
+    //* ------------------- FIDO, FETCH --------------------------------------------------
+
+    //TODO SAVED 1. These functions are built to grab a user's saved movies and shows. Head down to the useEffects to see the pulse-pounding sequel. 
+
     const getMyMovies = (userId) => {
         return getSavedFlixByUser(userId)
         .then(myMovies => {
@@ -25,6 +30,10 @@ export const MyFlix = ({getLoggedInUser}) => {
         })
     }
 
+    //*-------------------------DELETE------------------------------------------------------
+
+    //TODO DELETE Defines the delete functions. These are passed down as props into the Card functions. 
+
     const handleDeleteMovie = (movieId) => {
         deleteMovie(movieId)
         .then(() => getMyMovies(currentUser))
@@ -35,6 +44,10 @@ export const MyFlix = ({getLoggedInUser}) => {
         deleteShow(showId)
         .then(() => getMyTV(currentUser))
     }
+
+    //*-----------------------------USE EFFECTS----------------------------------------------
+
+    //TODO SAVED 2. Welcome back. On page load, these babies plug the current user's Id into the functions, so we grab just your saved data. 
 
     useEffect(() => {
         getMyMovies(currentUser)
